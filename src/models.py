@@ -101,8 +101,8 @@ class Character(Base):
     person = relationship(People)
 
 
-class CharacterInFilms(Base):
-    __tablename__ = 'characterInFilms'
+class VehiclesInFilms(Base):
+    __tablename__ = 'vehiclesInFilms'
     id = Column(Integer, primary_key=True)
     vehicles_id = Column(Integer, ForeignKey('vehicles.id'))
     vehicles = relationship(Vehicles)
@@ -115,6 +115,7 @@ class Favorites(Base):
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
+    username = Column(String(250), nullable=False)
     fav_planet_id = Column(Integer, ForeignKey('planets.id'))
     planet = relationship(Planets)
     fav_vehicle_id = Column(Integer, ForeignKey('vehicles.id'))
