@@ -115,15 +115,23 @@ class Favorites(Base):
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-    username = Column(String(250), nullable=False)
+    # username = Column(String(250), nullable=False)
+    username_id = Column(String(250), ForeignKey('user.id'))
+    username = relationship(User)
     fav_planet_id = Column(Integer, ForeignKey('planets.id'))
     planet = relationship(Planets)
     fav_vehicle_id = Column(Integer, ForeignKey('vehicles.id'))
     vehicle = relationship(Films)
     fav_person_id = Column(Integer, ForeignKey('people.id'))
     person = relationship(People)
+
+class User(Base):
+    __tablename__ = 'user'
+    id = Column(Integer, primary_key=True)
+    username = Column(String(250), nullable=False)
+    email = Column(String(250), nullable=True)
     
-    
+
 
 
     def to_dict(self):
