@@ -110,6 +110,16 @@ class VehiclesInFilms(Base):
     film = relationship(Films)
    
 
+class User(Base):
+    __tablename__ = 'user'
+    id = Column(Integer, primary_key=True)
+    username = Column(String(250), nullable=False)
+    email = Column(String(250), nullable=True)
+
+    def to_dict(self):
+        return {}
+
+        
 class Favorites(Base):
     __tablename__ = 'favorites'
     # Here we define columns for the table person
@@ -125,17 +135,7 @@ class Favorites(Base):
     fav_person_id = Column(Integer, ForeignKey('people.id'))
     person = relationship(People)
 
-class User(Base):
-    __tablename__ = 'user'
-    id = Column(Integer, primary_key=True)
-    username = Column(String(250), nullable=False)
-    email = Column(String(250), nullable=True)
-    
 
-
-
-    def to_dict(self):
-        return {}
 
 ## Draw from SQLAlchemy base
 render_er(Base, 'diagram.png')
